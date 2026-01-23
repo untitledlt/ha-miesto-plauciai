@@ -1,0 +1,11 @@
+{
+  "domain": "vilnius_air",
+  "name": "Vilnius Air Quality",
+  "version": "0.1.0",
+  "documentation": "https://github.com/yourname/vilnius_air",
+  "requirements": [],
+  "codeowners": [
+    "@untitled"
+  ],
+  "iot_class": "cloud_polling"
+}
