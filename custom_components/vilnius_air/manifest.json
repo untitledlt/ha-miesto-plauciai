@@ -1,12 +1,13 @@
 {
   "domain": "vilnius_air",
   "name": "Vilnius Air Quality",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "documentation": "https://github.com/untitledlt/ha-miesto-plauciai",
   "issue_tracker": "https://github.com/untitledlt/ha-miesto-plauciai/issues",
   "requirements": [],
   "codeowners": [
     "@untitledlt"
   ],
+  "config_flow": true,
   "iot_class": "cloud_polling"
 }
