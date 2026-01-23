@@ -4,10 +4,18 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, CONF_SENSOR_INDEX
 
-SENSORS = {
-    "pm1": ("PM1", "µg/m³"),
-    "pm2_5": ("PM2.5", "µg/m³"),
-    "pm10": ("PM10", "µg/m³"),
+# All possible sensors with their display names and units
+ALL_SENSORS = {
+    "pm1": ("PM1", "µg/m³", "mdi:blur"),
+    "pm2_5": ("PM2.5", "µg/m³", "mdi:blur"),
+    "pm10": ("PM10", "µg/m³", "mdi:blur"),
+    "so2_ug_m3": ("SO2", "µg/m³", "mdi:molecule"),
+    "co_mg_m3": ("CO", "mg/m³", "mdi:molecule-co"),
+    "voc": ("VOC", "ppb", "mdi:air-filter"),
+    "nh3_ug_m3": ("NH3", "µg/m³", "mdi:molecule"),
+    "no2_ug_m3": ("NO2", "µg/m³", "mdi:molecule"),
+    "no_ug_m3": ("NO", "µg/m³", "mdi:molecule"),
+    "o3_ug_m3": ("O3", "µg/m³", "mdi:molecule"),
 }
 
 
@@ -15,33 +23,39 @@ async def async_setup_entry(hass, entry, async_add_entities):
     """Set up Vilnius Air Quality sensors."""
     from .coordinator import VilniusAirCoordinator
 
-    coordinator = VilniusAirCoordinator(
-        hass,
-        entry.data[CONF_SENSOR_INDEX],
-    )
+    sensor_index = entry.data[CONF_SENSOR_INDEX]
+    coordinator = VilniusAirCoordinator(hass, sensor_index)
 
     await coordinator.async_config_entry_first_refresh()
 
-    async_add_entities(
-        VilniusAirSensor(coordinator, entry.entry_id, key, name, unit)
-        for key, (name, unit) in SENSORS.items()
-    )
+    # Only create sensors for data that is available (not null)
+    entities = []
+    if coordinator.data:
+        for key, (name, unit, icon) in ALL_SENSORS.items():
+            # Check if this sensor has data and it's not None
+            if key in coordinator.data and coordinator.data[key] is not None:
+                entities.append(
+                    VilniusAirSensor(coordinator, entry.entry_id, sensor_index, key, name, unit, icon)
+                )
+    
+    async_add_entities(entities)
 
 
 class VilniusAirSensor(CoordinatorEntity, SensorEntity):
     """Vilnius Air Quality sensor."""
 
-    def __init__(self, coordinator, entry_id, key, name, unit):
+    def __init__(self, coordinator, entry_id, sensor_index, key, name, unit, icon):
         """Initialize the sensor."""
         super().__init__(coordinator)
         self._key = key
-        self._attr_name = f"Vilnius {name}"
+        self._attr_name = f"Vilnius Air {sensor_index} {name}"
         self._attr_native_unit_of_measurement = unit
         self._attr_unique_id = f"{entry_id}_{key}"
         self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_icon = icon
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry_id)},
-            "name": f"Vilnius Air Sensor {coordinator.sensor_index}",
+            "name": f"Vilnius Air Sensor {sensor_index}",
             "manufacturer": "Vilnius City",
             "model": "Air Quality Monitor",
         }

@@ -13,12 +13,18 @@ This custom component integrates Vilnius city air quality sensors into Home Assi
 
 - Fetches air pollution data from Vilnius city's official air quality monitoring API
 - Supports selection of specific air quality sensor stations by sensor ID
-- Provides three sensor entities measuring different particulate matter sizes:
-  - **PM1** - Particulate matter ≤ 1.0 μm
-  - **PM2.5** - Particulate matter ≤ 2.5 μm  
-  - **PM10** - Particulate matter ≤ 10 μm
+- **Automatically detects and creates sensors for all available pollutants** at the selected station
+- Measures various air quality parameters including:
+  - Particulate matter (PM1, PM2.5, PM10)
+  - Sulfur dioxide (SO2)
+  - Carbon monoxide (CO)
+  - Volatile organic compounds (VOC)
+  - Ammonia (NH3)
+  - Nitrogen oxides (NO2, NO)
+  - Ozone (O3)
 - Automatic updates every hour
 - Cloud polling integration with Vilnius OpenCity API
+- **Supports multiple sensor stations** - add the integration multiple times with different sensor IDs
 
 ## Installation
 
@@ -90,13 +96,29 @@ To find the sensor index for a specific monitoring station:
 
 ## Sensors
 
-Once configured, the integration creates three sensor entities:
+Once configured, the integration creates sensor entities for all available pollutants from your selected monitoring station. Different stations may provide different measurements:
+
+### Common Sensors (Available on most stations)
 
 | Sensor | Description | Unit |
 |--------|-------------|------|
-| `sensor.vilnius_pm1` | PM1 particulate matter concentration | µg/m³ |
-| `sensor.vilnius_pm2_5` | PM2.5 particulate matter concentration | µg/m³ |
-| `sensor.vilnius_pm10` | PM10 particulate matter concentration | µg/m³ |
+| PM1 | PM1 particulate matter concentration | µg/m³ |
+| PM2.5 | PM2.5 particulate matter concentration | µg/m³ |
+| PM10 | PM10 particulate matter concentration | µg/m³ |
+
+### Additional Sensors (Available on some stations)
+
+| Sensor | Description | Unit |
+|--------|-------------|------|
+| SO2 | Sulfur dioxide concentration | µg/m³ |
+| CO | Carbon monoxide concentration | mg/m³ |
+| VOC | Volatile organic compounds | ppb |
+| NH3 | Ammonia concentration | µg/m³ |
+| NO2 | Nitrogen dioxide concentration | µg/m³ |
+| NO | Nitrogen monoxide concentration | µg/m³ |
+| O3 | Ozone concentration | µg/m³ |
+
+**Note:** The integration automatically creates sensors only for pollutants that are measured by your selected monitoring station. Entity names include the sensor ID (e.g., `sensor.vilnius_air_30416_pm2_5`) to support multiple sensor stations.
 
 ## Data Source
 

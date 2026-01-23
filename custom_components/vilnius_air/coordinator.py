@@ -32,7 +32,7 @@ class VilniusAirCoordinator(DataUpdateCoordinator):
         """Fetch data from API."""
         params = {
             "where": f"1=1 AND sensor_index={self.sensor_index}",
-            "outFields": "last_seen,pm1,pm2_5,pm10",
+            "outFields": "last_seen,pm1,pm2_5,pm10,so2_ug_m3,co_mg_m3,voc,nh3_ug_m3,no2_ug_m3,no_ug_m3,o3_ug_m3",
             "orderByFields": "last_seen DESC",
             "resultRecordCount": 1,
             "returnGeometry": "false",
