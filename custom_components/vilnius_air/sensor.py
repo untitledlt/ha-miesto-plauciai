@@ -28,12 +28,13 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     await coordinator.async_config_entry_first_refresh()
 
-    # Only create sensors for data that is available (not null)
+    # Create sensors for all fields that exist in the API response
+    # (even if they're None initially, they might have data later)
     entities = []
     if coordinator.data:
         for key, (name, unit, icon) in ALL_SENSORS.items():
-            # Check if this sensor has data and it's not None
-            if key in coordinator.data and coordinator.data[key] is not None:
+            # Create sensor if the key exists in the response (even if value is None)
+            if key in coordinator.data:
                 entities.append(
                     VilniusAirSensor(coordinator, entry.entry_id, sensor_index, key, name, unit, icon)
                 )
@@ -48,11 +49,14 @@ class VilniusAirSensor(CoordinatorEntity, SensorEntity):
         """Initialize the sensor."""
         super().__init__(coordinator)
         self._key = key
+        self._sensor_index = sensor_index
         self._attr_name = f"Vilnius Air {sensor_index} {name}"
         self._attr_native_unit_of_measurement = unit
         self._attr_unique_id = f"{entry_id}_{key}"
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_icon = icon
+        # Set a custom entity_id suggestion that includes sensor index
+        self.entity_id = f"sensor.vilnius_air_{sensor_index}_{key}"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry_id)},
             "name": f"Vilnius Air Sensor {sensor_index}",
