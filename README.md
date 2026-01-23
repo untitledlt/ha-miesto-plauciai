@@ -1,5 +1,8 @@
 # Vilnius Air Quality - Home Assistant Custom Component
 
+[![GitHub Release](https://img.shields.io/github/v/release/untitledlt/ha-miesto-plauciai)](https://github.com/untitledlt/ha-miesto-plauciai/releases)
+[![GitHub](https://img.shields.io/github/license/untitledlt/ha-miesto-plauciai)](https://github.com/untitledlt/ha-miesto-plauciai/blob/main/LICENSE)
+
 A Home Assistant custom component that fetches air pollution sensor data from Vilnius city's air quality monitoring network at [miestoplauciai.vilnius.lt/orotarsa](https://miestoplauciai.vilnius.lt/orotarsa).
 
 ## Overview
@@ -19,17 +22,52 @@ This custom component integrates Vilnius city air quality sensors into Home Assi
 
 ## Installation
 
-### Manual Installation
+### Method 1: Install from GitHub (Recommended)
 
-1. Copy the `custom_components/vilnius_air` directory to your Home Assistant's `custom_components` folder
-2. Restart Home Assistant
-3. Go to **Settings** → **Devices & Services** → **Add Integration**
-4. Search for "Vilnius Air Quality"
-5. Enter the sensor index for your chosen monitoring station
+1. Navigate to your Home Assistant configuration directory (where `configuration.yaml` is located)
+2. If you don't have a `custom_components` directory, create it:
+   ```bash
+   mkdir custom_components
+   cd custom_components
+   ```
+3. Clone this repository:
+   ```bash
+   git clone https://github.com/untitledlt/ha-miesto-plauciai.git
+   cd ha-miesto-plauciai
+   ```
+4. Copy the integration to your custom_components folder:
+   ```bash
+   cp -r custom_components/vilnius_air ../vilnius_air
+   ```
+5. Restart Home Assistant
+6. Go to **Settings** → **Devices & Services** → **Add Integration**
+7. Search for "Vilnius Air Quality"
+8. Enter the sensor index for your chosen monitoring station
 
-### HACS Installation
+### Method 2: Manual Download
 
-_(Not yet available in HACS default repositories)_
+1. Download the [latest release](https://github.com/untitledlt/ha-miesto-plauciai/releases) from GitHub
+2. Extract the archive
+3. Copy the `custom_components/vilnius_air` directory to your Home Assistant's `custom_components` folder
+4. Restart Home Assistant
+5. Go to **Settings** → **Devices & Services** → **Add Integration**
+6. Search for "Vilnius Air Quality"
+7. Enter the sensor index for your chosen monitoring station
+
+### Method 3: HACS Installation
+
+1. Open HACS in your Home Assistant instance
+2. Click on **Integrations**
+3. Click the **three dots** in the top right corner
+4. Select **Custom repositories**
+5. Add the repository URL: `https://github.com/untitledlt/ha-miesto-plauciai`
+6. Select category: **Integration**
+7. Click **Add**
+8. Find "Vilnius Air Quality" in HACS and click **Download**
+9. Restart Home Assistant
+10. Go to **Settings** → **Devices & Services** → **Add Integration**
+11. Search for "Vilnius Air Quality"
+12. Enter the sensor index for your chosen monitoring station
 
 ## Configuration
 
@@ -118,7 +156,7 @@ automation:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests.
+Contributions are welcome! Please feel free to submit issues or pull requests on the [GitHub repository](https://github.com/untitledlt/ha-miesto-plauciai).
 
 ## License
 
