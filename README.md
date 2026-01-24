@@ -98,6 +98,36 @@ To find the sensor index for a specific monitoring station:
 3. Note the sensor index/ID for that location
 4. Use this ID during integration setup
 
+#### Available Sensors
+
+| Sensor Index | Name | Latitude | Longitude |
+|--------------|------|----------|-----------|
+| 87539 | Zujūnai | 54.72728 | 25.169634 |
+| 97695 | Vilniaus Maironio progimnazija | 54.71449 | 25.237741 |
+| 91147 | Vinco Kudirkos aikštė | 54.68735 | 25.279945 |
+| 92611 | Vilniaus Taikos progimnazija | 54.715042 | 25.21283 |
+| 97681 | Vilniaus Joachimo Lelevelio inžinerijos gimnazija | 54.70567 | 25.29908 |
+| 97687 | Vilniaus Aleksandro Puškino gimnazija | 54.731033 | 25.222054 |
+| 97731 | Vilniaus kunigaikščio Gedimino progimnazija | 54.692867 | 25.266613 |
+| 97893 | Vilniaus Baltupių progimnazija | 54.730103 | 25.272648 |
+| 97903 | Vilniaus Lazdynų vidurinė mokykla | 54.675785 | 25.212624 |
+| 97905 | Vilniaus Martyno Mažvydo progimnazija | 54.70702 | 25.180683 |
+| 97749 | Grigiškių Šviesos gimnazija | 54.667286 | 25.098402 |
+| 97915 | Vilniaus Žaliakalnio darželis-mokykla | 54.686897 | 25.412926 |
+| 90315 | Vilniaus Sietuvos progimnazija | 54.72162 | 25.227186 |
+| 97919 | Vilniaus Ryto progimnazija | 54.694225 | 25.210457 |
+| 97957 | Vilniaus Jono Basanavičiaus progimnazija | 54.679886 | 25.255571 |
+| 97959 | Vilniaus Prano Mašioto pradinė mokykla | 54.715786 | 25.307705 |
+| 97963 | Vilniaus Naujininkų progimnazija | 54.660263 | 25.268192 |
+| 97967 | Vilniaus Naujamiesčio mokykla | 54.67775 | 25.267 |
+| 97969 | Vilniaus Gerosios Vilties progimnazija | 54.671345 | 25.251398 |
+| 97973 | Vilniaus Antano Vienuolio progimnazija | 54.673107 | 25.28931 |
+| 97977 | Vilniaus Antakalnio progimnazija | 54.701992 | 25.310047 |
+| 97979 | Vilniaus lopšelis-darželis "Eglutė" | 54.70372 | 25.248451 |
+| 98015 | Vilniaus Fabijoniškių gimnazija | 54.732414 | 25.240326 |
+| 30366 | Vėtrungių / S. Neries g. 7 (2 sensorius) | 54.733122 | 25.237299 |
+| 30416 | Vėtrungių / S. Neries g. 7 (1 sensorius) | 54.73299 | 25.236736 |
+
 ## Sensors
 
 Once configured, the integration creates sensor entities for all available pollutants from your selected monitoring station. Different stations may provide different measurements:
