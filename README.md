@@ -1,5 +1,9 @@
 # Vilnius Air Quality - Home Assistant Custom Component
 
+<p align="center">
+  <img src="logo.png" alt="Vilnius Air Quality Logo" width="200">
+</p>
+
 [![GitHub Release](https://img.shields.io/github/v/release/untitledlt/ha-miesto-plauciai)](https://github.com/untitledlt/ha-miesto-plauciai/releases)
 [![GitHub](https://img.shields.io/github/license/untitledlt/ha-miesto-plauciai)](https://github.com/untitledlt/ha-miesto-plauciai/blob/main/LICENSE)
 
