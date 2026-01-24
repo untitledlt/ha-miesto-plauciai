@@ -1,8 +1,8 @@
 """Vilnius Air Quality data coordinator."""
 from datetime import timedelta
 import logging
-import aiohttp
 
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import DOMAIN
@@ -40,11 +40,11 @@ class VilniusAirCoordinator(DataUpdateCoordinator):
         }
 
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(URL, params=params) as resp:
-                    if resp.status != 200:
-                        raise UpdateFailed(f"Failed to fetch data: HTTP {resp.status}")
-                    data = await resp.json()
+            session = async_get_clientsession(self.hass)
+            async with session.get(URL, params=params) as resp:
+                if resp.status != 200:
+                    raise UpdateFailed(f"Failed to fetch data: HTTP {resp.status}")
+                data = await resp.json()
 
             if not data.get("features"):
                 raise UpdateFailed(f"No data returned for sensor_index {self.sensor_index}")
@@ -52,8 +52,6 @@ class VilniusAirCoordinator(DataUpdateCoordinator):
             attributes = data["features"][0]["attributes"]
             _LOGGER.debug("Fetched data: %s", attributes)
             return attributes
-        except aiohttp.ClientError as err:
+        except Exception as err:
             raise UpdateFailed(f"Error communicating with API: {err}") from err
-        except (KeyError, IndexError) as err:
-            raise UpdateFailed(f"Invalid data format: {err}") from err
 
