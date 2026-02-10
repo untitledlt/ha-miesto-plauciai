@@ -6,6 +6,7 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/untitledlt/ha-miesto-plauciai)](https://github.com/untitledlt/ha-miesto-plauciai/releases)
 [![GitHub](https://img.shields.io/github/license/untitledlt/ha-miesto-plauciai)](https://github.com/untitledlt/ha-miesto-plauciai/blob/main/LICENSE)
+[![Validate](https://github.com/untitledlt/ha-miesto-plauciai/actions/workflows/validate.yml/badge.svg)](https://github.com/untitledlt/ha-miesto-plauciai/actions/workflows/validate.yml)
 
 A Home Assistant custom component that fetches air pollution sensor data from Vilnius city's air quality monitoring network at [miestoplauciai.vilnius.lt/orotarsa](https://miestoplauciai.vilnius.lt/orotarsa).
 
